@@ -47,9 +47,12 @@ func (f *Floor) updateGridFloor(topLeftX, topLeftY int) {
 // le comportement attendu dans le rendu du projet
 func (f *Floor) updateFromFileFloor(topLeftX, topLeftY int) {
 	for y := 0; y < len(f.content); y++ {
+		yAbsolu := y + topLeftY
 		for x := 0; x < len(f.content[y]); x++ {
-			if y < len(f.fullContent) && x < len(f.fullContent[y]) {
-				f.content[y][x] = f.fullContent[y][x]
+			xAbsolu := x + topLeftX
+			if yAbsolu >= 0 && yAbsolu < len(f.fullContent) &&
+				xAbsolu >= 0 && xAbsolu < len(f.fullContent[yAbsolu]) {
+				f.content[y][x] = f.fullContent[yAbsolu][xAbsolu]
 			} else {
 				f.content[y][x] = -1
 			}

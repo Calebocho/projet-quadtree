@@ -3,6 +3,9 @@ package floor
 import (
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/configuration"
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/quadtree"
+	"os"
+	"bufio"
+	"log"
 )
 
 // Init initialise les structures de données internes de f.
@@ -23,6 +26,41 @@ func (f *Floor) Init() {
 // lecture du contenu d'un fichier représentant un terrain
 // pour le stocker dans un tableau
 func readFloorFromFile(fileName string) (floorContent [][]int) {
-	// TODO
+	var file *os.File
+	var err error
+	file, err = os.Open(fileName)
+	if err != nil {
+		log.Fatal("erreur lors de l'ouverture du fichier de sol", fileName, err)
+	}
+	var scanner *bufio.Scanner = bufio.NewScanner(file)
+
+	for lineNumber := 0; scanner.Scan(); lineNumber++ {
+		line := scanner.Text()
+		var floorLine []int = make([]int, len(line))
+		for column, c := range(line) {
+			floorCell := int(c) - int('0')
+			if floorCell < 0 || floorCell > 9 {
+				log.Fatal("caractère invalide", c, lineNumber, column)
+			}
+			floorLine[column] = floorCell
+			if err != nil {
+				log.Fatal("erreur lors de la conversion caractère vers nombre dans le fichier",
+					fileName, "à la ligne", lineNumber,
+					column, "ième caractère", err)
+			}
+		}
+		floorContent = append(floorContent, floorLine)
+	}
+
+	err = scanner.Err()
+	if err != nil {
+		log.Fatal("erreur lors de la lecture du fichier", fileName, err)
+	}
+
+	err = file.Close()
+	if err != nil {
+		log.Fatal("erreur lors de la fermeture du fichier", fileName, err)
+	}
+
 	return
 }
