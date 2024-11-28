@@ -6,7 +6,7 @@
     "NumCharacterAnimImages": 4,
     "NumFramePerCharacterAnimImage": 5,
     "NumTileForDebug": 6,
-    "CameraMode": 1,
-    "FloorKind": 1,
+    "CameraMode": 0,
+    "FloorKind": 2,
     "FloorFile": "../floor-files/maisons"
 }
