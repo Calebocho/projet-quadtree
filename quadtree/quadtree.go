@@ -55,6 +55,15 @@ func (q Quadtree) GetAsText(name string) (asText string) {
 	return
 }
 
+func (q Quadtree) GetWidth() int {
+	return q.width
+}
+
+func (q Quadtree) GetHeight() int {
+	return q.height
+}
+
+
 // getAsText permet d'afficher un nœud sous forme textuelle, c'est une méthode
 // utilitaire pour construire GetAsText.
 func (n node) getAsText(shift, step int) (asText string) {

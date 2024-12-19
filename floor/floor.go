@@ -1,6 +1,9 @@
 package floor
 
-import "gitlab.univ-nantes.fr/jezequel-l/quadtree/quadtree"
+import (
+	"gitlab.univ-nantes.fr/jezequel-l/quadtree/quadtree"
+	"gitlab.univ-nantes.fr/jezequel-l/quadtree/configuration"
+)
 
 // Floor représente les données du terrain. Pour le moment
 // aucun champs n'est exporté.
@@ -27,15 +30,27 @@ const (
 // à partir du tableau fullContent, en supposant que
 // ce tableau représente un terrain rectangulaire
 func (f Floor) GetHeight() (height int) {
-	return len(f.fullContent)
+	switch configuration.Global.FloorKind {
+	case FromFileFloor:
+		return len(f.fullContent)
+	case QuadTreeFloor:
+		return f.quadtreeContent.GetHeight()
+	}
+	return
 }
 
 // GetWidth retourne la largeur (en cases) du terrain
 // à partir du tableau fullContent, en supposant que
 // ce tableau représente un terrain rectangulaire
 func (f Floor) GetWidth() (width int) {
-	if len(f.fullContent) > 0 {
-		width = len(f.fullContent[0])
+	switch configuration.Global.FloorKind {
+	case FromFileFloor:
+		if len(f.fullContent) > 0 {
+			width = len(f.fullContent[0])
+		}
+		return
+	case QuadTreeFloor:
+		return f.quadtreeContent.GetWidth()
 	}
 	return
 }
