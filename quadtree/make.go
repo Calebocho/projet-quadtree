@@ -1,4 +1,5 @@
 package quadtree
+
 import "log"
 
 // MakeFromArray construit un quadtree représentant un terrain
@@ -38,8 +39,8 @@ func makeQuadtreeNodeFromArea(floorContent [][]int, x, y, width, height int) *no
 
 	isContentUniform := true
 	previousContent := floorContent[y][x]
-	for column := x; column < x + width && isContentUniform; column++ {
-		for line := y; line < y + height; line++ {
+	for column := x; column < x+width && isContentUniform; column++ {
+		for line := y; line < y+height; line++ {
 			if floorContent[line][column] != previousContent {
 				isContentUniform = false
 				break
