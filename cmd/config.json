@@ -1,7 +1,10 @@
 {
+    "RandomFloor": true,
+    "RandomTileX": 28,
+    "RandomTileY": 25,
     "DebugMode": false,
-    "NumTileX": 28,
-    "NumTileY": 28,
+    "NumTileX": 13,
+    "NumTileY": 17,
     "TileSize": 16,
     "NumCharacterAnimImages": 4,
     "NumFramePerCharacterAnimImage": 5,
