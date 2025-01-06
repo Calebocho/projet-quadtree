@@ -1,6 +1,9 @@
 package floor
 
 import (
+	"log"
+
+	"gitlab.univ-nantes.fr/jezequel-l/quadtree/assets"
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/configuration"
 )
 
@@ -21,6 +24,24 @@ func (f *Floor) Update(camXPos, camYPos int) {
 		f.updateFromFileFloor(topLeftX, topLeftY)
 	case QuadTreeFloor:
 		f.updateQuadtreeFloor(topLeftX, topLeftY)
+	}
+
+	if configuration.Global.AnimateFloor {
+		f.frameCounter++
+		if f.frameCounter < configuration.Global.NumFramePerFloorAnimImage {
+			return
+		}
+		f.frameCounter = 0
+
+		floorImageHeight := assets.FloorImage.Bounds().Dy()
+		if floorImageHeight % configuration.Global.TileSize != 0 {
+			log.Fatal("floor image height is not divisible by the tile size!")
+		}
+		frameCount := floorImageHeight / configuration.Global.TileSize
+		f.currentAnimationFrame++
+		if f.currentAnimationFrame >= frameCount {
+			f.currentAnimationFrame = 0
+		}
 	}
 }
 

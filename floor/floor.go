@@ -17,6 +17,9 @@ type Floor struct {
 	content         [][]int
 	fullContent     [][]int
 	quadtreeContent quadtree.Quadtree
+
+	frameCounter          int
+	currentAnimationFrame int
 }
 
 // types d'affichage du terrain disponibles

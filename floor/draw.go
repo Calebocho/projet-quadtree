@@ -20,12 +20,12 @@ func (f Floor) Draw(screen *ebiten.Image) {
 				op.GeoM.Translate(float64(x*configuration.Global.TileSize), float64(y*configuration.Global.TileSize))
 
 				shiftX := f.content[y][x] * configuration.Global.TileSize
+				shiftY := f.currentAnimationFrame * configuration.Global.TileSize
 
 				screen.DrawImage(assets.FloorImage.SubImage(
-					image.Rect(shiftX, 0, shiftX+configuration.Global.TileSize, configuration.Global.TileSize),
+					image.Rect(shiftX, shiftY, shiftX+configuration.Global.TileSize, shiftY+configuration.Global.TileSize),
 				).(*ebiten.Image), op)
 			}
 		}
 	}
-
 }

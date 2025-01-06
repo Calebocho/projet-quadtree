@@ -20,6 +20,9 @@ import (
 //   - NumFramePerCharacterAnimImage : le nombre d'appels à update ou
 //     de 1/60 de seconde) qui ont lieu entre deux images de l'animation
 //     du personnage.
+//   - AnimateFloor: indique si le sol est animé
+//   - NumFramePerFloorAnimImage: le nombre d'appels à update (1/60 de seconde)
+//     qui ont lieu entre deux images de l'animation du sol.
 //   - NumTileForDebug : le nombre de cases à ajouter à droite de l'écran
 //     pour afficher les informations de debug
 //   - CameraMode : le type de caméra à utiliser (0 pour une caméra fixe
@@ -40,6 +43,8 @@ type Configuration struct {
 	TileSize                      int
 	NumCharacterAnimImages        int
 	NumFramePerCharacterAnimImage int
+	AnimateFloor                  bool
+	NumFramePerFloorAnimImage     int
 	NumTileForDebug               int
 	CameraMode                    int
 	FloorKind                     int

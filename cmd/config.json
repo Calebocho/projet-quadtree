@@ -8,6 +8,8 @@
     "TileSize": 16,
     "NumCharacterAnimImages": 4,
     "NumFramePerCharacterAnimImage": 5,
+    "AnimateFloor": true,
+    "NumFramePerFloorAnimImage": 15,
     "NumTileForDebug": 6,
     "CameraMode": 1,
     "FloorKind": 2,
