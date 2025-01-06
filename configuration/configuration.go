@@ -40,6 +40,7 @@ import (
 type Configuration struct {
 	DebugMode                     bool
 	NumTileX, NumTileY            int
+	RandomTileX, RandomTileY      int
 	TileSize                      int
 	NumCharacterAnimImages        int
 	NumFramePerCharacterAnimImage int
@@ -49,6 +50,7 @@ type Configuration struct {
 	CameraMode                    int
 	FloorKind                     int
 	FloorFile                     string
+	RandomFloor                   bool
 
 	ScreenWidth, ScreenHeight            int `json:"-"`
 	ScreenCenterTileX, ScreenCenterTileY int `json:"-"`
