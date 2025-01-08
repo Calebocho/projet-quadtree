@@ -51,6 +51,7 @@ type Configuration struct {
 	FloorKind                     int
 	FloorFile                     string
 	RandomFloor                   bool
+	Blocking                      bool
 
 	ScreenWidth, ScreenHeight            int `json:"-"`
 	ScreenCenterTileX, ScreenCenterTileY int `json:"-"`

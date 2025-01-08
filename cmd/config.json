@@ -1,4 +1,5 @@
 {
+    "Blocking": true,
     "RandomFloor": true,
     "RandomTileX": 28,
     "RandomTileY": 25,
