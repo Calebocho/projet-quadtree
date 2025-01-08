@@ -31,7 +31,8 @@ func (g *Game) Update() error {
 			g.character.Y = teleportedPos.Y
 		}
 	}
-	g.camera.Update(g.character.X, g.character.Y)
+
+	g.camera.Update(g.character.X, g.character.Y, g.floor.GetWidth(), g.floor.GetHeight())
 	g.floor.Update(g.camera.X, g.camera.Y)
 
 	return nil

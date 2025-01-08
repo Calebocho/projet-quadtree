@@ -5,7 +5,7 @@
     "RandomTileY": 25,
     "DebugMode": false,
     "NumTileX": 13,
-    "NumTileY": 17,
+    "NumTileY": 11,
     "TileSize": 16,
     "NumCharacterAnimImages": 4,
     "NumFramePerCharacterAnimImage": 5,
@@ -13,6 +13,7 @@
     "NumFramePerFloorAnimImage": 15,
     "NumTileForDebug": 6,
     "CameraMode": 1,
+    "CameraBlockedByEdge": true,
     "FloorKind": 2,
     "FloorFile": "../floor-files/maisons",
     "Teleporters": true

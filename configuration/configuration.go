@@ -49,6 +49,7 @@ type Configuration struct {
 	NumFramePerFloorAnimImage     int
 	NumTileForDebug               int
 	CameraMode                    int
+	CameraBlockedByEdge           bool
 	FloorKind                     int
 	FloorFile                     string
 	RandomFloor                   bool
