@@ -31,13 +31,21 @@ func (c *Camera) updateFollowCharacter(characterPosX, characterPosY, floor_width
 
 	leftViewEdgeX := characterPosX - configuration.Global.ScreenCenterTileX
 	rightViewEdgeX := leftViewEdgeX + configuration.Global.NumTileX
-	if leftViewEdgeX >= 0 && rightViewEdgeX <= floor_width {
+	if leftViewEdgeX < 0 {
+		c.X = configuration.Global.ScreenCenterTileX
+	} else if rightViewEdgeX <= floor_width {
 		c.X = characterPosX
+	} else {
+		c.X = floor_width - (configuration.Global.NumTileX - configuration.Global.ScreenCenterTileX)
 	}
 
 	topViewEdgeY := characterPosY - configuration.Global.ScreenCenterTileY
 	bottomViewEdgeY := topViewEdgeY + configuration.Global.NumTileY
-	if topViewEdgeY >= 0 && bottomViewEdgeY <= floor_height {
+	if topViewEdgeY < 0 {
+		c.Y = configuration.Global.ScreenCenterTileY
+	} else if bottomViewEdgeY <= floor_height {
 		c.Y = characterPosY
+	} else {
+		c.Y = floor_height - (configuration.Global.NumTileY - configuration.Global.ScreenCenterTileY)
 	}
 }
