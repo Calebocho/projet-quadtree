@@ -9,8 +9,9 @@ import (
 // Update met à jour la position du personnage, son orientation
 // et son étape d'animation (si nécessaire) à chaque pas
 // de temps, c'est-à-dire tous les 1/60 secondes.
-func (c *Character) Update(blocking [4]bool) {
-
+//
+// Retourne true si l'on vient de finir un déplacement au dernier appel à Update()
+func (c *Character) Update(blocking [4]bool) bool {
 	if !c.moving {
 		if ebiten.IsKeyPressed(ebiten.KeyRight) {
 			c.orientation = orientedRight
@@ -51,8 +52,9 @@ func (c *Character) Update(blocking [4]bool) {
 				c.Y += c.yInc
 				c.xInc = 0
 				c.yInc = 0
+				return true
 			}
 		}
 	}
-
+	return false
 }

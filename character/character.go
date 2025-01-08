@@ -31,3 +31,18 @@ type Character struct {
 	shift               int
 	animationFrameCount int
 }
+
+func (c Character) GetPosInFront(increment int) (int, int) {
+	switch c.orientation {
+	case orientedDown:
+		return c.X, c.Y + increment
+	case orientedUp:
+		return c.X, c.Y - increment
+	case orientedLeft:
+		return c.X - increment, c.Y
+	case orientedRight:
+		return c.X + increment, c.Y
+	default:
+		return 0, 0
+	}
+}

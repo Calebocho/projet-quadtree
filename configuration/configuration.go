@@ -31,6 +31,7 @@ import (
 //     (quadrillage, lecture dans un fichier, quadtree, etc)
 //   - FloorFile : le chemin d'un fichier où lire les informations sur le
 //     terrain si nécessaire
+//   - Teleporters: indique si les téléporteurs sont activés
 //
 // Les champs calculés à partir des précédents sont :
 //   - ScreenWidth, ScreenHeight : la largeur et la hauteur de l'écran
@@ -52,6 +53,7 @@ type Configuration struct {
 	FloorFile                     string
 	RandomFloor                   bool
 	Blocking                      bool
+	Teleporters                   bool
 
 	ScreenWidth, ScreenHeight            int `json:"-"`
 	ScreenCenterTileX, ScreenCenterTileY int `json:"-"`

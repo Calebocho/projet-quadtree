@@ -17,7 +17,20 @@ func (g *Game) Update() error {
 		configuration.Global.DebugMode = !configuration.Global.DebugMode
 	}
 
-	g.character.Update(g.floor.Blocking(g.character.X, g.character.Y, g.camera.X, g.camera.Y))
+	useTeleporters := configuration.Global.Teleporters
+	if useTeleporters && inpututil.IsKeyJustPressed(ebiten.KeyT) {
+		teleporter_x, teleporter_y := g.character.GetPosInFront(1)
+		g.floor.SetNewTeleporter(teleporter_x, teleporter_y)
+	}
+
+	justMoved := g.character.Update(g.floor.Blocking(g.character.X, g.character.Y, g.camera.X, g.camera.Y))
+	if useTeleporters && justMoved {
+		teleportedPos := g.floor.Teleport(g.character.X, g.character.Y)
+		if teleportedPos != nil {
+			g.character.X = teleportedPos.X
+			g.character.Y = teleportedPos.Y
+		}
+	}
 	g.camera.Update(g.character.X, g.character.Y)
 	g.floor.Update(g.camera.X, g.camera.Y)
 

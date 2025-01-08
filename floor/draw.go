@@ -25,6 +25,10 @@ func (f Floor) Draw(screen *ebiten.Image) {
 				screen.DrawImage(assets.FloorImage.SubImage(
 					image.Rect(shiftX, shiftY, shiftX+configuration.Global.TileSize, shiftY+configuration.Global.TileSize),
 				).(*ebiten.Image), op)
+
+				if f.IsOnAnyTeleporter(f.topLeftX + x, f.topLeftY + y) {
+					screen.DrawImage(assets.TeleporterImage, op)
+				}
 			}
 		}
 	}
