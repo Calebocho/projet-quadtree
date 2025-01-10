@@ -1,5 +1,7 @@
 package character
 
+import "log"
+
 const (
 	orientedDown int = iota
 	orientedLeft
@@ -43,6 +45,7 @@ func (c Character) GetPosInFront(increment int) (int, int) {
 	case orientedRight:
 		return c.X + increment, c.Y
 	default:
+		log.Fatal("invalid character orientation", c.orientation)
 		return 0, 0
 	}
 }

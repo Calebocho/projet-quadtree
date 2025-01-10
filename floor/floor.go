@@ -75,7 +75,7 @@ func (f Floor) IsOnAnyTeleporter(x, y int) bool {
 }
 
 func (f Floor) IsInside(x, y int) bool {
-	return x > 0 && y > 0 && x < f.GetWidth() && y < f.GetHeight()
+	return x >= 0 && y >= 0 && x < f.GetWidth() && y < f.GetHeight()
 }
 
 func (f Floor) Teleport(x, y int) *Pos {
