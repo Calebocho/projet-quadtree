@@ -20,6 +20,7 @@ func (g *Game) Update() error {
 	useTeleporters := configuration.Global.Teleporters
 	if useTeleporters && inpututil.IsKeyJustPressed(ebiten.KeyT) {
 		teleporter_x, teleporter_y := g.character.GetPosInFront(1)
+
 		g.floor.SetNewTeleporter(teleporter_x, teleporter_y)
 	}
 

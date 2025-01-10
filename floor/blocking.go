@@ -11,16 +11,14 @@ func (f Floor) Blocking(characterXPos, characterYPos, camXPos, camYPos int) (blo
 	relativeXPos := characterXPos - camXPos + configuration.Global.ScreenCenterTileX
 	relativeYPos := characterYPos - camYPos + configuration.Global.ScreenCenterTileY
 
-	blocking[0] = relativeYPos <= 0 || f.isCellBlocking(relativeXPos, relativeYPos-1)
-	blocking[1] = relativeXPos >= configuration.Global.NumTileX-1 || f.isCellBlocking(relativeXPos+1, relativeYPos)
-	blocking[2] = relativeYPos >= configuration.Global.NumTileY-1 || f.isCellBlocking(relativeXPos, relativeYPos+1)
-	blocking[3] = relativeXPos <= 0 || f.isCellBlocking(relativeXPos-1, relativeYPos)
+	blocking[0] = relativeYPos <= 0 || IsCellBlocking(f.content[relativeYPos-1][relativeXPos])
+	blocking[1] = relativeXPos >= configuration.Global.NumTileX-1 || IsCellBlocking(f.content[relativeYPos][relativeXPos+1])
+	blocking[2] = relativeYPos >= configuration.Global.NumTileY-1 || IsCellBlocking(f.content[relativeYPos+1][relativeXPos])
+	blocking[3] = relativeXPos <= 0 || IsCellBlocking(f.content[relativeYPos][relativeXPos-1])
 	return blocking
 }
 
-func (f Floor) isCellBlocking(relative_x, relative_y int) bool {
-	cell := f.content[relative_y][relative_x]
-
+func IsCellBlocking(cell int) bool {
 	// Il n'est logique de marcher ni dans le vide, ni sur l'eau, ni sur un mur
 	return cell == -1 || (configuration.Global.Blocking && (cell == 4) || (cell == 2))
 }

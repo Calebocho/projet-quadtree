@@ -89,7 +89,9 @@ func (f Floor) Teleport(x, y int) *Pos {
 }
 
 func (f *Floor) SetNewTeleporter(teleporter_x, teleporter_y int) bool {
-	if f.IsOnAnyTeleporter(teleporter_x, teleporter_y) || !f.IsInside(teleporter_x, teleporter_y) {
+	if f.IsOnAnyTeleporter(teleporter_x, teleporter_y) ||
+		!f.IsInside(teleporter_x, teleporter_y) ||
+		IsCellBlocking(f.content[teleporter_y - f.topLeftY][teleporter_x - f.topLeftX]) {
 		return false
 	}
 
