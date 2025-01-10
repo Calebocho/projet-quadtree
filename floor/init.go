@@ -13,10 +13,7 @@ import (
 
 // Init initialise les structures de données internes de f.
 func (f *Floor) Init() {
-	f.content = make([][]int, configuration.Global.NumTileY)
-	for y := 0; y < len(f.content); y++ {
-		f.content[y] = make([]int, configuration.Global.NumTileX)
-	}
+	f.UpdateCameraViewSize()
 
 	switch configuration.Global.FloorKind {
 	case FromFileFloor:
@@ -36,6 +33,13 @@ func (f *Floor) Init() {
 		} else {
 			f.quadtreeContent = quadtree.MakeFromArray(readFloorFromFile(configuration.Global.FloorFile))
 		}
+	}
+}
+
+func (f *Floor) UpdateCameraViewSize() {
+	f.content = make([][]int, configuration.Global.NumTileY)
+	for y := 0; y < len(f.content); y++ {
+		f.content[y] = make([]int, configuration.Global.NumTileX)
 	}
 }
 

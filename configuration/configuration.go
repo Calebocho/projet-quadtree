@@ -56,6 +56,7 @@ type Configuration struct {
 	Blocking                      bool
 	Teleporters                   bool
 	SaveFloor                     bool
+	Zoomable                      bool
 
 	ScreenWidth, ScreenHeight            int `json:"-"`
 	ScreenCenterTileX, ScreenCenterTileY int `json:"-"`
@@ -82,12 +83,12 @@ func Load(configurationFileName string) {
 		log.Fatal("Error while reading configuration file: ", err)
 	}
 
-	setComputedFields()
+	SetComputedFields()
 }
 
-// setComputedFields se charge de remplir les champs calculés
+// SetComputedFields se charge de remplir les champs calculés
 // de la configuration à partir des autres champs.
-func setComputedFields() {
+func SetComputedFields() {
 	Global.ScreenWidth = Global.NumTileX * Global.TileSize
 	Global.ScreenHeight = Global.NumTileY * Global.TileSize
 	Global.ScreenCenterTileX = Global.NumTileX / 2
