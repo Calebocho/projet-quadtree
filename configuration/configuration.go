@@ -55,6 +55,7 @@ type Configuration struct {
 	RandomFloor                   bool
 	Blocking                      bool
 	Teleporters                   bool
+	SaveFloor                     bool
 
 	ScreenWidth, ScreenHeight            int `json:"-"`
 	ScreenCenterTileX, ScreenCenterTileY int `json:"-"`

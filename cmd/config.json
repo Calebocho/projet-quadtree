@@ -16,5 +16,6 @@
     "CameraBlockedByEdge": true,
     "FloorKind": 2,
     "FloorFile": "../floor-files/maisons",
-    "Teleporters": true
+    "Teleporters": true,
+    "SaveFloor": true
 }
