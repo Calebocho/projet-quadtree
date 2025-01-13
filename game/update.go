@@ -33,7 +33,8 @@ func (g *Game) Update() error {
 		}
 	}
 
-	g.camera.Update(g.character.X, g.character.Y, g.floor.GetWidth(), g.floor.GetHeight())
+	xShift, yShift := g.character.GetShift()
+	g.camera.Update(g.character.X, g.character.Y, xShift, yShift, g.floor.GetWidth(), g.floor.GetHeight())
 	g.floor.Update(g.camera.X, g.camera.Y)
 
 	if configuration.Global.Zoomable {
@@ -43,7 +44,7 @@ func (g *Game) Update() error {
 			configuration.SetComputedFields()
 			g.floor.UpdateCameraViewSize()
 			g.floor.Update(g.camera.X, g.camera.Y)
-			g.camera.Update(g.character.X, g.character.Y, g.floor.GetWidth(), g.floor.GetHeight())
+			g.camera.Update(g.character.X, g.character.Y, g.camera.XShift, g.camera.YShift, g.floor.GetWidth(), g.floor.GetHeight())
 		}
 		if inpututil.IsKeyJustPressed(ebiten.KeyNumpadAdd) && configuration.Global.NumTileX > 3 && configuration.Global.NumTileY > 3 {
 			configuration.Global.NumTileX -= 1
@@ -51,7 +52,7 @@ func (g *Game) Update() error {
 			configuration.SetComputedFields()
 			g.floor.UpdateCameraViewSize()
 			g.floor.Update(g.camera.X, g.camera.Y)
-			g.camera.Update(g.character.X, g.character.Y, g.floor.GetWidth(), g.floor.GetHeight())
+			g.camera.Update(g.character.X, g.character.Y, g.camera.XShift, g.camera.YShift, g.floor.GetWidth(), g.floor.GetHeight())
 		}
 	}
 

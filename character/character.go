@@ -52,3 +52,20 @@ func (c Character) GetPosInFront(increment int) (int, int) {
 		return 0, 0
 	}
 }
+
+func (c Character) GetShift() (int, int) {
+	xShift := 0
+	yShift := 0
+	switch c.orientation {
+	case orientedDown:
+		yShift = c.shift
+	case orientedUp:
+		yShift = -c.shift
+	case orientedLeft:
+		xShift = -c.shift
+	case orientedRight:
+		xShift = c.shift
+	}
+
+	return xShift, yShift
+}

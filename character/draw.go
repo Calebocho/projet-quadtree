@@ -14,21 +14,7 @@ import (
 // fonction des charactéristiques du personnage (position, orientation,
 // étape d'animation, etc) et de la position de la caméra (le personnage
 // est affiché relativement à la caméra).
-func (c Character) Draw(screen *ebiten.Image, camX, camY int) {
-
-	xShift := 0
-	yShift := 0
-	switch c.orientation {
-	case orientedDown:
-		yShift = c.shift
-	case orientedUp:
-		yShift = -c.shift
-	case orientedLeft:
-		xShift = -c.shift
-	case orientedRight:
-		xShift = c.shift
-	}
-
+func (c Character) Draw(screen *ebiten.Image, camX, camY, xShift, yShift int) {
 	xTileForDisplay := c.X - camX + configuration.Global.ScreenCenterTileX
 	yTileForDisplay := c.Y - camY + configuration.Global.ScreenCenterTileY
 	xPos := (xTileForDisplay)*configuration.Global.TileSize + xShift

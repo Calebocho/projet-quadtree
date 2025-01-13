@@ -6,7 +6,9 @@ package camera
 // se trouve mais vous pourrez ajouter des choses
 // au besoin lors de votre développement.
 type Camera struct {
-	X, Y int
+	X, Y                               int
+	XShift, YShift                     int
+	OutsideXEdges, OutsideYEdges       bool
 }
 
 // types de caméra disponibles

@@ -13,5 +13,5 @@ func (g *Game) Init() {
 		g.floor.SaveFloor("../floor-files/saved-floor")
 	}
 	g.character.Init(g.floor.GetWidth(), g.floor.GetHeight())
-	g.camera.Init(g.character.X, g.character.Y)
+	g.camera.Init(g.character.X, g.character.Y, 0, 0)
 }

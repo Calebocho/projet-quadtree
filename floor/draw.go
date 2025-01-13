@@ -11,13 +11,12 @@ import (
 
 // Draw affiche dans une image (en général, celle qui représente l'écran),
 // la partie du sol qui est visible (qui doit avoir été calculée avec Get avant).
-func (f Floor) Draw(screen *ebiten.Image) {
-
+func (f Floor) Draw(screen *ebiten.Image, xShift, yShift int) {
 	for y := range f.content {
 		for x := range f.content[y] {
 			if f.content[y][x] != -1 {
 				op := &ebiten.DrawImageOptions{}
-				op.GeoM.Translate(float64(x*configuration.Global.TileSize), float64(y*configuration.Global.TileSize))
+				op.GeoM.Translate(float64(x*configuration.Global.TileSize - xShift), float64(y*configuration.Global.TileSize - yShift))
 
 				shiftX := f.content[y][x] * configuration.Global.TileSize
 				shiftY := f.currentAnimationFrame * configuration.Global.TileSize

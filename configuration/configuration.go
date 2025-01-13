@@ -68,6 +68,7 @@ type Configuration struct {
 	Teleporters                   bool
 	SaveFloor                     bool
 	Zoomable                      bool
+	FluidCamera                   bool
 
 	ScreenWidth, ScreenHeight            int `json:"-"`
 	ScreenCenterTileX, ScreenCenterTileY int `json:"-"`

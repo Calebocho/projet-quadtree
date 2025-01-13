@@ -18,5 +18,6 @@
     "FloorFile": "../floor-files/maisons",
     "Teleporters": true,
     "SaveFloor": true,
-    "Zoomable": true
+    "Zoomable": true,
+    "FluidCamera": true
 }
