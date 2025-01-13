@@ -40,6 +40,8 @@ func (f Floor) Teleport(x, y int) *Pos {
 // puisse y marcher, puis crée un nouveau téléporteur à la place du plus ancien
 // créé, en échangeant les téléporteurs existants préalablement de manière à ce
 // que les téléporteurs successifs les plus récents soient conservés.
+//
+// Retourne true si le téléporteur a pu être placé, false sinon.
 func (f *Floor) SetNewTeleporter(teleporter_x, teleporter_y int) bool {
 	if f.IsOnAnyTeleporter(teleporter_x, teleporter_y) ||
 		!f.IsInside(teleporter_x, teleporter_y) ||
