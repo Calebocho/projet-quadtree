@@ -34,6 +34,9 @@ type Character struct {
 	animationFrameCount int
 }
 
+// Retourne la position située à une distance "increment" de la position actuelle
+// du personnage dans l'axe/le sens où marche actuellement le personnage. Cette
+// position peut se trouver hors du terrain.
 func (c Character) GetPosInFront(increment int) (int, int) {
 	switch c.orientation {
 	case orientedDown:

@@ -35,19 +35,20 @@ func (q Quadtree) GetContent(topLeftX, topLeftY int, contentHolder [][]int) {
 
 	var contentX, contentY int
 	if topLeftX < 0 {
-		posTopLeftX := -topLeftX
-		contentX = posTopLeftX
+		contentX = -topLeftX
 		topLeftX = 0
 	}
 	if topLeftY < 0 {
-		posTopLeftY := -topLeftY
-		contentY = posTopLeftY
+		contentY = -topLeftY
 		topLeftY = 0
 	}
 
 	fillContentFromNode(q.root, topLeftX, topLeftY, contentX, contentY, visible_width, visible_height, contentHolder)
 }
 
+// Remplit la zone de contentHolder correspondant au rectangle de taille width * height
+// positionné avec son coin haut gauche en (contentX, contentY) et récupéré
+// à partir du coin haut gauche "topLeft" en (topLeftX, topLeftY) du noeud de quadtree.
 func fillContentFromNode(node *node, topLeftX, topLeftY, contentX, contentY, width, height int, contentHolder [][]int) {
 	if node == nil {
 		return

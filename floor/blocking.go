@@ -18,6 +18,8 @@ func (f Floor) Blocking(characterXPos, characterYPos, camXPos, camYPos int) (blo
 	return blocking
 }
 
+// Vérifie si la case "cell" est un terrain qui n'est pas bloquant pour les déplacements
+// du personnage.
 func IsCellBlocking(cell int) bool {
 	// Il n'est logique de marcher ni dans le vide, ni sur l'eau, ni sur un mur
 	return cell == -1 || (configuration.Global.Blocking && (cell == 4) || (cell == 2))

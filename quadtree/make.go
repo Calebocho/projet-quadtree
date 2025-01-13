@@ -1,7 +1,5 @@
 package quadtree
 
-import "log"
-
 // MakeFromArray construit un quadtree représentant un terrain
 // étant donné un tableau représentant ce terrain.
 func MakeFromArray(floorContent [][]int) (q Quadtree) {
@@ -15,10 +13,10 @@ func MakeFromArray(floorContent [][]int) (q Quadtree) {
 	return
 }
 
+// Retourne un nœud de quadtree à partir de la zone contenue dans floorContent
+// définie par son coin haut gauche en (x, y) (pour le floorContent et les positions
+// topLeftX/Y du nœud de quadtree) et sa taille width * height.
 func makeQuadtreeNodeFromArea(floorContent [][]int, x, y, width, height int) *node {
-	if x < 0 || y < 0 || width < 0 || height < 0 {
-		log.Fatal("paramètre négatif invalide", x, y, width, height)
-	}
 	if width == 0 || height == 0 {
 		return &node {
 			topLeftX: x,
@@ -49,7 +47,7 @@ func makeQuadtreeNodeFromArea(floorContent [][]int, x, y, width, height int) *no
 		}
 	}
 
-	if isContentUniform || (width == 1 && height == 1) {
+	if isContentUniform {
 		return &node {
 			topLeftX: x,
 			topLeftY: y,

@@ -7,6 +7,8 @@ import (
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/configuration"
 )
 
+// Enregistre le contenu du sol dans le fichier fileName, sous le même format
+// que celui lu par readFloorFromFile() dans floor/init.go
 func (f *Floor) SaveFloor(fileName string) {
 	fullContent := [][]int{}
 

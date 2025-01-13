@@ -14,6 +14,8 @@ import (
 //   - DebugMode : indique si on est en mode debug ou pas
 //   - NumTileX, NumTileY : les nombres de cases affichées à l'écran
 //     en largeur et hauteur.
+//   - RandomTileX, RandomTileY, RandomFloor : la taille du terrain créé aléatoirement
+//     dans le cas où RandomFloor vaut vrai.
 //   - TileSize : la taille en pixels du côté d'une case.
 //   - NumCharacterAnimImages : le nombre de d'images de l'animation du
 //     personnage.
@@ -27,11 +29,20 @@ import (
 //     pour afficher les informations de debug
 //   - CameraMode : le type de caméra à utiliser (0 pour une caméra fixe
 //     et 1 pour une caméra qui suit le personnage).
+//   - CameraBlockedByEdge: indique si la caméra restera "bloquée" aux bords
+//     du terrain sans afficher de zone vide supplémentaire à mesure que l'on
+//     s'approche des bords.
 //   - FloorKind : détermine la méthode à utiliser pour afficher le terrain
 //     (quadrillage, lecture dans un fichier, quadtree, etc)
 //   - FloorFile : le chemin d'un fichier où lire les informations sur le
 //     terrain si nécessaire
+//   - Blocking: indique si l'on peut marcher sur certains types de cases sur
+//     lesquels il ne semblerait pas logique de pouvoir aisément marcher (l'eau,
+//     les murs, etc.)
 //   - Teleporters: indique si les téléporteurs sont activés
+//   - SaveFloor: indique si le terrain est sauvegardé (dans floor-files/saved-floor)
+//   - Zoomable: indique s'il est possible de zoomer et dé-zoomer la vue du terrain
+//     par la caméra
 //
 // Les champs calculés à partir des précédents sont :
 //   - ScreenWidth, ScreenHeight : la largeur et la hauteur de l'écran

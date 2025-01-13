@@ -69,6 +69,9 @@ func readFloorFromFile(fileName string) (floorContent [][]int) {
 					column, "ième caractère", err)
 			}
 		}
+		if lineNumber != 0 && len(floorLine) != len(floorContent[len(floorContent)-1]) {
+			log.Fatal("le terrain n'est pas rectangulaire à partir de la ligne", lineNumber)
+		}
 		floorContent = append(floorContent, floorLine)
 	}
 
