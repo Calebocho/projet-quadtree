@@ -1,7 +1,11 @@
 package character
 
 import (
+	"math/rand"
+	"log"
+
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/configuration"
+	"gitlab.univ-nantes.fr/jezequel-l/quadtree/particle"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -11,7 +15,9 @@ import (
 // de temps, c'est-à-dire tous les 1/60 secondes.
 //
 // Retourne true si l'on vient de finir un déplacement au dernier appel à Update()
-func (c *Character) Update(blocking [4]bool) bool {
+func (c *Character) Update(blocking [4]bool, currentCell int) (justMoved bool, newParticle *particle.Particle) {
+	justMoved = false
+
 	if !c.moving {
 		if ebiten.IsKeyPressed(ebiten.KeyRight) {
 			c.orientation = orientedRight
@@ -39,6 +45,10 @@ func (c *Character) Update(blocking [4]bool) bool {
 			}
 		}
 	} else {
+		if configuration.Global.Particles {
+			newParticle = c.placeWalkingParticle(currentCell)
+		}
+
 		c.animationFrameCount++
 		if c.animationFrameCount >= configuration.Global.NumFramePerCharacterAnimImage {
 			c.animationFrameCount = 0
@@ -52,9 +62,40 @@ func (c *Character) Update(blocking [4]bool) bool {
 				c.Y += c.yInc
 				c.xInc = 0
 				c.yInc = 0
-				return true
+				c.placedParticle = false
+				justMoved = true
+				return
 			}
 		}
 	}
-	return false
+	return
+}
+
+func (c *Character) placeWalkingParticle(currentCell int) (newParticle *particle.Particle) {
+	orientationDeg := 0
+	if currentCell != 4 {
+		switch c.orientation {
+		case orientedDown:
+			orientationDeg = 180
+		case orientedLeft:
+			orientationDeg = 270
+		case orientedRight:
+			orientationDeg = 90
+		case orientedUp:
+			orientationDeg = 0
+		default:
+			log.Fatal("orientation invalide du personnage dans character.Update()")
+		}
+	}
+
+	particleType := particle.GetParticleTypeWhenWalkingOnCell(currentCell)
+
+	if !c.placedParticle && rand.Intn(particleType.GetWalkingAppearanceFrequency()) == 0 {
+		xShift, yShift := c.GetShift()
+		p := particle.NewParticle(particleType, float64(orientationDeg), c.X, c.Y, xShift, yShift)
+		newParticle = &p
+		c.placedParticle = particleType.IsAloneOnCell()
+	}
+
+	return
 }

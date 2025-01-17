@@ -22,5 +22,5 @@ func (f Floor) Blocking(characterXPos, characterYPos, camXPos, camYPos int) (blo
 // du personnage.
 func IsCellBlocking(cell int) bool {
 	// Il n'est logique de marcher ni dans le vide, ni sur l'eau, ni sur un mur
-	return cell == -1 || (configuration.Global.Blocking && (cell == 4) || (cell == 2))
+	return cell == -1 || (configuration.Global.Blocking && ((cell == 4) || (cell == 2)))
 }

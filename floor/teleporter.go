@@ -18,11 +18,6 @@ func (f Floor) IsOnAnyTeleporter(x, y int) bool {
 	return f.isOnTeleporter(0, x, y) || f.isOnTeleporter(1, x, y)
 }
 
-// Vérifie si le point (x, y) est bien contenu par la surface du sol.
-func (f Floor) IsInside(x, y int) bool {
-	return x >= 0 && y >= 0 && x < f.GetWidth() && y < f.GetHeight()
-}
-
 // Retourne la position du téléporteur sur lequel se trouvant en (x, y), ou
 // nil s'il n'y a pas de téléporteur à cette position.
 func (f Floor) Teleport(x, y int) *Pos {

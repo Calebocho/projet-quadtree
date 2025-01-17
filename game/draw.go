@@ -30,10 +30,20 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	g.floor.Draw(screen, cameraXShift, cameraYShift)
+	g.drawParticles(screen, cameraXShift, cameraYShift)
 	g.character.Draw(screen, g.camera.X, g.camera.Y, characterXShift, characterYShift)
 
 	if configuration.Global.DebugMode {
 		g.drawDebug(screen)
+	}
+}
+
+func (g *Game) drawParticles(screen *ebiten.Image, cameraXShift, cameraYShift int) {
+	for _, particle := range(g.particles) {
+		if particle.Disappeared() {
+			continue
+		}
+		particle.Draw(screen, g.camera.X - configuration.Global.ScreenCenterTileX, g.camera.Y - configuration.Global.ScreenCenterTileY, cameraXShift, cameraYShift)
 	}
 }
 

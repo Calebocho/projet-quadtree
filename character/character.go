@@ -24,6 +24,9 @@ const (
 //     coordonnées absolues.
 //   - animationFrameCount : le nombre d'appels à update (ou de 1/60 de seconde) qui
 //     ont eu lieu depuis la dernière étape d'animation.
+//   - placedParticle: indique si une particule a déjà été placé sur la case
+//         actuelle, pour éviter un empilement trop important de particules de
+//         marche au même endroit.
 type Character struct {
 	X, Y                int
 	orientation         int
@@ -32,6 +35,7 @@ type Character struct {
 	moving              bool
 	shift               int
 	animationFrameCount int
+	placedParticle      bool
 }
 
 // Retourne la position située à une distance "increment" de la position actuelle

@@ -4,6 +4,7 @@ import (
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/camera"
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/character"
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/floor"
+	"gitlab.univ-nantes.fr/jezequel-l/quadtree/particle"
 )
 
 // Game est le type permettant de représenter les données du jeu.
@@ -17,4 +18,5 @@ type Game struct {
 	camera    camera.Camera
 	floor     floor.Floor
 	character character.Character
+	particles []particle.Particle
 }

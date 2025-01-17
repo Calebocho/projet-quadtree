@@ -1,6 +1,8 @@
 package game
 
 import (
+	"log"
+
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"gitlab.univ-nantes.fr/jezequel-l/quadtree/configuration"
@@ -24,13 +26,37 @@ func (g *Game) Update() error {
 		g.floor.SetNewTeleporter(teleporter_x, teleporter_y)
 	}
 
-	justMoved := g.character.Update(g.floor.Blocking(g.character.X, g.character.Y, g.camera.X, g.camera.Y))
+	currentViewPosX := g.character.X - g.camera.X + configuration.Global.ScreenCenterTileX
+	currentViewPosY := g.character.Y - g.camera.Y + configuration.Global.ScreenCenterTileY
+	posInsideCameraView, currentCell := g.floor.GetCameraViewCell(currentViewPosX, currentViewPosY)
+	if !posInsideCameraView {
+		log.Fatal("code cassé, ne devrait pas trouvé une position hors de la vue de la caméra ici")
+	}
+
+	justMoved, newParticle := g.character.Update(g.floor.Blocking(g.character.X, g.character.Y, g.camera.X, g.camera.Y), currentCell)
 	if useTeleporters && justMoved {
 		teleportedPos := g.floor.Teleport(g.character.X, g.character.Y)
 		if teleportedPos != nil {
 			g.character.X = teleportedPos.X
 			g.character.Y = teleportedPos.Y
 		}
+	}
+	if newParticle != nil {
+		particleAdded := false
+		for i, particle := range(g.particles) {
+			if particle.Disappeared() {
+				g.particles[i] = *newParticle
+				particleAdded = true
+				break
+			}
+		}
+		if !particleAdded {
+			g.particles = append(g.particles, *newParticle)
+		}
+	}
+
+	for i := 0; i < len(g.particles); i++ {
+		(&g.particles[i]).Update()
 	}
 
 	xShift, yShift := g.character.GetShift()

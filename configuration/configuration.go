@@ -43,6 +43,8 @@ import (
 //   - SaveFloor: indique si le terrain est sauvegardé (dans floor-files/saved-floor)
 //   - Zoomable: indique s'il est possible de zoomer et dé-zoomer la vue du terrain
 //     par la caméra
+//   - FluidCamera: indique si la caméra doit se déplacer de manière fluide ou non
+//   - Particles: indique si les particules sont activées
 //
 // Les champs calculés à partir des précédents sont :
 //   - ScreenWidth, ScreenHeight : la largeur et la hauteur de l'écran
@@ -69,6 +71,7 @@ type Configuration struct {
 	SaveFloor                     bool
 	Zoomable                      bool
 	FluidCamera                   bool
+	Particles                     bool
 
 	ScreenWidth, ScreenHeight            int `json:"-"`
 	ScreenCenterTileX, ScreenCenterTileY int `json:"-"`

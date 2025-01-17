@@ -1,5 +1,5 @@
 {
-    "Blocking": true,
+    "Blocking": false,
     "RandomFloor": false,
     "RandomTileX": 28,
     "RandomTileY": 25,
@@ -19,5 +19,6 @@
     "Teleporters": true,
     "SaveFloor": true,
     "Zoomable": true,
-    "FluidCamera": true
+    "FluidCamera": true,
+    "Particles": true
 }
