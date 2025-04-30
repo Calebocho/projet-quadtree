@@ -31,6 +31,16 @@ cd cmd
 
 go run main.go
 
+🎮 Commandes du Jeu
+
+Pendant la partie, vous pouvez interagir avec le jeu via les touches suivantes :
+
+    T → Activer/désactiver le téléporteur
+
+    + → Zoomer sur la carte ou la zone de jeu
+
+    - → Dézoomer pour avoir une vue plus large
+
 📜 Licence
 
 Ce projet est à but pédagogique uniquement.
