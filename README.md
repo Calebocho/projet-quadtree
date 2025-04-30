@@ -1,3 +1,37 @@
-# project-quadtree
+# 🕹️ Projet Quadtree - Jeu en Golang
 
-Code source initial pour le projet d'introduction au développement (R1.01) et de SAÉ implémentation d'un besoin client (SAE1.01).
+Bienvenue dans ce projet de jeu développé en **Golang**, réalisé en duo durant ma première année de **BUT Informatique** à l'IUT de Nantes.
+
+---
+
+## ✅ Prérequis
+
+Assurez-vous que votre machine dispose des éléments suivants :
+
+- [Go](https://golang.org/dl/) (version **1.19** ou ultérieure recommandée)
+- Un terminal ou IDE compatible Go (comme [VS Code](https://code.visualstudio.com/) avec l'extension Go)
+
+---
+
+## 🚀 Installation
+
+Clonez le dépôt sur votre machine avec la commande suivante :
+
+```bash
+git clone https://github.com/Calebocho/projet-quadtree.git
+cd projet-quadtree
+
+🎮 Lancement du Jeu
+
+1.Accédez au dossier cmd :
+
+cd cmd
+
+2.Exécutez le fichier principal :
+
+go run main.go
+
+📜 Licence
+
+Ce projet est à but pédagogique uniquement.
+
