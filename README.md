@@ -35,7 +35,7 @@ go run main.go
 
 Pendant la partie, vous pouvez interagir avec le jeu via les touches suivantes :
 
-    T → Activer/désactiver le téléporteur
+    T → Déposer un téléporteur
 
     + → Zoomer sur la carte ou la zone de jeu
 
